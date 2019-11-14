@@ -24,20 +24,20 @@ public class WebController {
 	@GetMapping("/viewAllMeals")
 	public String viewAllMeals(Model model) {
 		model.addAttribute("mealPlanner", repo.findAll());
-		return "inputUser";
+		return "results";
 	}
 	
 	@GetMapping("/inputMeal")
 	public String addNewMeal(Model model) {
 	    Meal m = new Meal();
 	    model.addAttribute("newMeal", m);
-	    return "results";
+	    return "inputMeal";
 	}
 	
 	@PostMapping("/inputMeal")
-	public String addNewMeal(@ModelAttribute Meal m, Model model) {
+	public String addNewMeal(@ModelAttribute ("mealName") Meal m, Model model) {
 		repo.save(m);
-		model.addAttribute("newMeal", repo.findAll());
+		model.addAttribute("mealName", repo.findAll());
 		return "results";
 	}
 	
@@ -51,11 +51,11 @@ public class WebController {
 	}
 	
 	@PostMapping("/inputUser")
-	public String addNewUser(@ModelAttribute User u, Meal m, Model model) {
+	public String addNewUser(@ModelAttribute ("newUser") User u, @ModelAttribute ("mealName") Meal m, Model model) {
 		userRepo.save(u);
 		repo.save(m);
 		model.addAttribute("newUser", repo.findAll());
-		model.addAttribute("newMeal", repo.findAll());
+		model.addAttribute("mealName", repo.findAll());
 		return "results";
 	}
 }
