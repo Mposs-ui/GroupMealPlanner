@@ -28,7 +28,7 @@ CREATE TABLE `ingredients` (
   `cost` decimal(10,2) DEFAULT NULL,
   `calories` varchar(5) DEFAULT NULL,
   PRIMARY KEY (`ingredient_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,6 @@ CREATE TABLE `ingredients` (
 
 LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
-INSERT INTO `ingredients` VALUES (1,'TestIngredient',0.00,'0'),(33,'2',3.00,'3'),(36,'TestIngred5',5.00,'33');
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,12 +49,12 @@ DROP TABLE IF EXISTS `meal_list`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `meal_list` (
   `meal_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name_of_meal` varchar(30) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `name_of_meal` varchar(30) NOT NULL,
+  `user_id` int(11) NOT NULL,
   PRIMARY KEY (`meal_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `meal_list_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_table` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +63,6 @@ CREATE TABLE `meal_list` (
 
 LOCK TABLES `meal_list` WRITE;
 /*!40000 ALTER TABLE `meal_list` DISABLE KEYS */;
-INSERT INTO `meal_list` VALUES (1,'TestMealName',1),(2,'TestMealName',1),(3,NULL,NULL),(4,NULL,NULL);
 /*!40000 ALTER TABLE `meal_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +89,6 @@ CREATE TABLE `meals_on_list` (
 
 LOCK TABLES `meals_on_list` WRITE;
 /*!40000 ALTER TABLE `meals_on_list` DISABLE KEYS */;
-INSERT INTO `meals_on_list` VALUES (1,1);
 /*!40000 ALTER TABLE `meals_on_list` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,9 +101,9 @@ DROP TABLE IF EXISTS `user_table`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_table` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(30) DEFAULT NULL,
+  `user_name` varchar(30) NOT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +112,6 @@ CREATE TABLE `user_table` (
 
 LOCK TABLES `user_table` WRITE;
 /*!40000 ALTER TABLE `user_table` DISABLE KEYS */;
-INSERT INTO `user_table` VALUES (1,'TestName'),(2,NULL),(3,NULL),(4,NULL),(5,NULL);
 /*!40000 ALTER TABLE `user_table` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -128,4 +124,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-11-16 19:30:00
+-- Dump completed on 2019-11-08 21:21:52

@@ -1,5 +1,6 @@
 package dmacc.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +13,8 @@ public class Ingredients {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="ingredient_id")//don't know why but w/o this it just creates some weird characters in the middle the column name
+	private long id; //changed this to long instead of int
 	private String name;
 	private int calories;
 	private double cost;
@@ -28,10 +30,10 @@ public class Ingredients {
 		this.cost = cost;
 	}
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {

@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Create New Ingredient</title>
+</head>
+<body>
+<h1>Ingredient info</h1>
+<form th:object="${newIngredients}" th:action="@{/inputIngredients}" method='POST'>
+
+Name: <input name="name" size="15"> <br />
+Cost: $<input name="cost" size="6"> <br />
+Calories: <input name="calories" size="4"> <br />
+<input name="submit" type="submit" value="Add ingredient" />
+
+</form>
+<a href="placeholder">placeholder link</a>
+</body>
+</html>
