@@ -30,41 +30,38 @@ public class WebController {
 	@Autowired
 	MealPlannerRepositoryIngredients ingredientsRepo;
 	
+	//for viewing all meals
 	@GetMapping("/viewAllMeals")
 	public String viewAllMeals(Model model) {
 		model.addAttribute("mealPlanner", repo.findAll());
 		return "results";
 	}
-	
+	//for adding a meal - get
 	@GetMapping("/inputMeal")
 	public String addNewMeal(Model model) {
-	    Meal m = new Meal();
-	    model.addAttribute("newMeal", m);
+	    Meal mealName = new Meal();
+	    model.addAttribute("newMeal", mealName);
 	    return "inputMeal";
 	}
-	
+	//for adding a meal - post
 	@PostMapping("/inputMeal")
-	public String addNewMeal(@ModelAttribute ("mealName") Meal m, Model model) {
-		repo.save(m);
-		model.addAttribute("mealName", repo.findAll());
+	public String addNewMeal(@ModelAttribute ("mealName") Meal mealName, Model model) {
+		repo.save(mealName);
+		model.addAttribute("newMeal", repo.findAll());
 		return "results";
 	}
-	
+	//for adding a user - get
 	@GetMapping("/inputUser")
 	public String addNewUser(Model model) {
 		User u = new User();
-		Meal m = new Meal();
 		model.addAttribute("newUser", u);
-		model.addAttribute("newMeal", m);
 		return "inputUser";
 	}
-	
+	//for adding a user - post
 	@PostMapping("/inputUser")
-	public String addNewUser(@ModelAttribute ("newUser") User u, @ModelAttribute ("mealName") Meal m, Model model) {
+	public String addNewUser(@ModelAttribute ("newUser") User u, Model model) {
 		userRepo.save(u);
-		repo.save(m);
 		model.addAttribute("newUser", repo.findAll());
-		model.addAttribute("mealName", repo.findAll());
 		return "results";
 	}
 	
